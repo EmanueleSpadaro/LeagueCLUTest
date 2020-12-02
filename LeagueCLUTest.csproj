@@ -92,6 +92,7 @@
     <Compile Include="RiotSharp\Models\LeagueLockData.cs" />
     <Compile Include="RiotSharp\Models\LeagueMatchmaking.cs" />
     <Compile Include="RiotSharp\Models\LeaguePatchGameVersion.cs" />
+    <Compile Include="RiotSharp\Requestors\RiotClientRequestor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
