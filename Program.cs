@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
+using LeagueCLUTest.RiotSharp.Enums;
 using LeagueCLUTest.RiotSharp;
 
 namespace LeagueCLUTest
@@ -13,7 +14,14 @@ namespace LeagueCLUTest
     {
         static void Main(string[] args)
         {
-            LeagueSharp league = new LeagueSharp();
+            Task.Run(async () =>
+            {
+                LeagueSharp league = new LeagueSharp();
+                bool isRdy = await league.Requestor.LeaguePatch.GetCheckingEnabledAsync();
+                Console.WriteLine("LeaguePatch Checking Enabled: "  + isRdy);
+            }).Wait();
+
+            Console.ReadKey();
         }
     }
 }
