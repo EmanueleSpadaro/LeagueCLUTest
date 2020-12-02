@@ -16,7 +16,10 @@ namespace LeagueCLUTest
 
             int x = league.Requestor.RiotClient.GetAppPort().Result;
 
+            var gVer = league.Requestor.LeaguePatch.GetGameVersionAsync().Result;   
+
             Console.WriteLine(x);
+            Console.WriteLine(gVer.ToString());
 
             Console.ReadKey();
 

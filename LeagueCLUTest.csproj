@@ -86,6 +86,7 @@
     <Compile Include="RiotSharp\Exceptions\LeagueClientSocketNotFoundException.cs" />
     <Compile Include="RiotSharp\Handlers\LeagueMatchmakingHandler.cs" />
     <Compile Include="RiotSharp\Models\LeaguePatchStatus.cs" />
+    <Compile Include="RiotSharp\Requestors\LeagueMatchmakingRequestor.cs" />
     <Compile Include="RiotSharp\Requestors\LeaguePatchRequestor.cs" />
     <Compile Include="RiotSharp\Requestors\LeagueRequestor.cs" />
     <Compile Include="RiotSharp\LeagueSharp.cs" />

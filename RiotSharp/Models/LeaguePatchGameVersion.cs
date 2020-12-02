@@ -27,13 +27,15 @@ namespace LeagueCLUTest.RiotSharp.Models
 
         public LeaguePatchGameVersion(string patchStr)
         {
-            var regResult = Regex.Match(patchStr, @"(\d+)");
-            Season = Convert.ToInt32(regResult.Groups[0]);
-            Major = Convert.ToInt32(regResult.Groups[1]);
-            Minor = Convert.ToInt32(regResult.Groups[2]);
+            var regResult = Regex.Matches(patchStr, @"(\d+)");           
+            Season = Convert.ToInt32(regResult[0].Value);
+            Major = Convert.ToInt32(regResult[1].Value);
+            Minor = Convert.ToInt32(regResult[2].Value);
         }
 
         public bool Equals(LeaguePatchGameVersion v)
             => this.Season == v.Season && this.Major == v.Major;
+
+        public override string ToString() => $"{Season}.{Major}";
     }
 }
