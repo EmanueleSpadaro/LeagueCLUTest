@@ -11,8 +11,11 @@ namespace LeagueCLUTest.RiotSharp.Models
 {
     public class LeaguePatchStatus
     {
-        public bool ConnectedToPatchServer;
-        public bool HasUpdatesOnRestart;
-        public bool WillRestartOnSelfUpdate;
+        public bool ConnectedToPatchServer { get; set; }
+        public bool HasUpdatesOnRestart { get; set; }
+        public bool WillRestartOnSelfUpdate { get; set; }
+
+        public override string ToString()
+            => JsonSerializer.Serialize<LeaguePatchStatus>(this);
     }
 }
