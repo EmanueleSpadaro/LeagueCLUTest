@@ -81,11 +81,14 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RiotSharp\Enums\LeagueLocale.cs" />
+    <Compile Include="RiotSharp\Enums\LeaguePlayerResponse.cs" />
     <Compile Include="RiotSharp\Enums\LeagueRegion.cs" />
+    <Compile Include="RiotSharp\Enums\LeagueSearchState.cs" />
     <Compile Include="RiotSharp\Exceptions\LeagueClientNotRunningException.cs" />
     <Compile Include="RiotSharp\Exceptions\LeagueClientSocketNotFoundException.cs" />
     <Compile Include="RiotSharp\Handlers\LeagueMatchmakingHandler.cs" />
     <Compile Include="RiotSharp\Models\LeaguePatchStatus.cs" />
+    <Compile Include="RiotSharp\Models\LeagueReadyCheck.cs" />
     <Compile Include="RiotSharp\Requestors\LeagueMatchmakingRequestor.cs" />
     <Compile Include="RiotSharp\Requestors\LeaguePatchRequestor.cs" />
     <Compile Include="RiotSharp\Requestors\LeagueRequestor.cs" />

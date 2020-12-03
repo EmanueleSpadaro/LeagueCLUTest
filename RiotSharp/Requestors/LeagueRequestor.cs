@@ -27,6 +27,7 @@ namespace LeagueCLUTest.RiotSharp.Requestors
         #region Implemented Requestors [Be sure to create their relative instance in constructor]
         public LeaguePatchRequestor LeaguePatch { get; private set; }
         public RiotClientRequestor RiotClient { get; private set; }
+        public LeagueMatchmakingRequestor LeagueMatchmaking { get; private set; }
         #endregion
 
         public LeagueRequestor(Process LeagueProcess)
@@ -50,6 +51,7 @@ namespace LeagueCLUTest.RiotSharp.Requestors
 
             LeaguePatch = new LeaguePatchRequestor(this.RestClient);
             RiotClient = new RiotClientRequestor(this.RestClient);
+            LeagueMatchmaking = new LeagueMatchmakingRequestor(this.RestClient);
         }
     }
 }

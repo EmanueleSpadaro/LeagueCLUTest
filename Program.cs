@@ -5,27 +5,29 @@ using System.Text;
 using System.Threading.Tasks;
 
 using LeagueCLUTest.RiotSharp;
+using LeagueCLUTest.RiotSharp.Enums;
 
 namespace LeagueCLUTest
 {
     class Program
     {
+        static LeagueSharp League = new LeagueSharp();
         static void Main(string[] args)
         {
-            var league = new LeagueSharp();
+            League.MatchmakingHandler.MatchmakingStarted += MatchmakingHandler_MatchmakingStarted;
 
-            int x = league.Requestor.RiotClient.GetAppPort().Result;
-
-            var gVer = league.Requestor.LeaguePatch.GetGameVersionAsync().Result;
-
-            var patchStatus = league.Requestor.LeaguePatch.GetStatusAsync().Result;
-
-            Console.WriteLine(x);
-            Console.WriteLine(gVer.ToString());
-            Console.WriteLine(patchStatus.ToString());
-
+            Console.WriteLine("Press enter to check if it's blocking");
+            Console.ReadKey();
+            Console.WriteLine("It shouldn't be if you're here after Cycle started");
             Console.ReadKey();
 
+        }
+
+        private static void MatchmakingHandler_MatchmakingStarted(object sender, RiotSharp.Handlers.LeagueMatchmakingHandlerEventArgs e)
+        {
+            if (e.Matchmaking.SearchState.ToLeagueSearchState() == LeagueSearchState.Searching)
+                League.Requestor.LeagueMatchmaking.DeleteSearchAsync().Wait();
+            Console.WriteLine("MM started");
         }
     }
 }

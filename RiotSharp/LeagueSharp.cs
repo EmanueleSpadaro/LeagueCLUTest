@@ -16,6 +16,7 @@ using DotNetstat;
 using LeagueCLUTest.RiotSharp.Requestors;
 using LeagueCLUTest.RiotSharp.Models;
 using LeagueCLUTest.RiotSharp.Exceptions;
+using LeagueCLUTest.RiotSharp.Handlers;
 using RestSharp.Authenticators;
 
 namespace LeagueCLUTest.RiotSharp
@@ -26,12 +27,13 @@ namespace LeagueCLUTest.RiotSharp
         /// The League Client executable name without file extension
         /// </summary>
         const string ExecutableName = "LeagueClient";
-        const string LCUUsername = "riot";
 
         public LeagueRequestor Requestor { get; private set; }
 
-        Process LeagueProcess { get; set; }
-        RestClient RestClient;
+        private Process LeagueProcess { get; set; }
+        private RestClient RestClient;
+
+        public LeagueMatchmakingHandler MatchmakingHandler { get; private set; }
 
         public LeagueSharp()
         {
@@ -43,6 +45,10 @@ namespace LeagueCLUTest.RiotSharp
             LeagueProcess = procs[0];
 
             Requestor = new LeagueRequestor(LeagueProcess);
+
+            //Set up Handlers after Requestor has been instantiated
+
+            MatchmakingHandler = new LeagueMatchmakingHandler(this);
         }
     }
 }
