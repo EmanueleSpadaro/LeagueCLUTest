@@ -12,9 +12,10 @@ namespace LeagueCLUTest
     class Program
     {
         static LeagueSharp League = new LeagueSharp();
+
         static void Main(string[] args)
         {
-            League.MatchmakingHandler.MatchmakingStarted += MatchmakingHandler_MatchmakingStarted;
+            League.ChampionSelectHandler.ChampionSelected += ChampionSelectHandler_ChampionSelected;
 
             Console.WriteLine("Press enter to check if it's blocking");
             Console.ReadKey();
@@ -23,11 +24,9 @@ namespace LeagueCLUTest
 
         }
 
-        private static void MatchmakingHandler_MatchmakingStarted(object sender, RiotSharp.Handlers.LeagueMatchmakingHandlerEventArgs e)
+        private static void ChampionSelectHandler_ChampionSelected(object sender, RiotSharp.Handlers.LeagueChampionSelectHandlerEventArgs e)
         {
-            if (e.Matchmaking.SearchState.ToLeagueSearchState() == LeagueSearchState.Searching)
-                League.Requestor.LeagueMatchmaking.DeleteSearchAsync().Wait();
-            Console.WriteLine("MM started");
+            Console.WriteLine("Selected ChampID: " + e.ChampionID);
         }
     }
 }

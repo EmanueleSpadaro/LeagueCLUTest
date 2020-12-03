@@ -33,7 +33,9 @@ namespace LeagueCLUTest.RiotSharp
         private Process LeagueProcess { get; set; }
         private RestClient RestClient;
 
+        //Game event handlers, they're gonna be moved to LeagueSharp.Handlers prop asap for code cleanup
         public LeagueMatchmakingHandler MatchmakingHandler { get; private set; }
+        public LeagueChampionSelectHandler ChampionSelectHandler { get; private set; }
 
         public LeagueSharp()
         {
@@ -49,6 +51,7 @@ namespace LeagueCLUTest.RiotSharp
             //Set up Handlers after Requestor has been instantiated
 
             MatchmakingHandler = new LeagueMatchmakingHandler(this);
+            ChampionSelectHandler = new LeagueChampionSelectHandler(this);
         }
     }
 }
