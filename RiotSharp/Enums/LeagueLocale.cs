@@ -163,5 +163,16 @@ namespace LeagueCLUTest.RiotSharp.Enums
                     }
             }
         }
+        public static LeagueLocale ToLeagueLocale(this string s)
+        {
+            //We run all over our Enum possible values
+            for(int i = 0; i < (int)LeagueLocale.zhTW; i++)
+            {
+                LeagueLocale locale = (LeagueLocale)i;
+                if (locale.AsString() == s)
+                    return locale;
+            }
+            return default;
+        }
     }
 }

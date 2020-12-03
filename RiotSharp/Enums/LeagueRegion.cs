@@ -107,5 +107,17 @@ namespace LeagueCLUTest.RiotSharp.Enums
                     return string.Empty;
             }
         }
+    
+        public static LeagueRegion ToLeagueRegion(this string s)
+        {
+            for(int i = 0; i < (int)LeagueRegion.TR1; i++)
+            {
+                LeagueRegion r = (LeagueRegion)i;
+                if (r.AsString() == s)
+                    return r;
+            }
+            return default;
+        }
+    
     }
 }
