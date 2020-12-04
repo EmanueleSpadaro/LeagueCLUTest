@@ -29,6 +29,7 @@ namespace LeagueCLUTest.RiotSharp.Requestors
         public RiotClientRequestor RiotClient { get; private set; }
         public LeagueMatchmakingRequestor LeagueMatchmaking { get; private set; }
         public LeagueChampionSelectRequestor ChampionSelect { get; private set; }
+        public LeaguePerksRequestor Perks { get; private set; }
         #endregion
 
         public LeagueRequestor(Process LeagueProcess)
@@ -54,6 +55,7 @@ namespace LeagueCLUTest.RiotSharp.Requestors
             RiotClient = new RiotClientRequestor(this.RestClient);
             LeagueMatchmaking = new LeagueMatchmakingRequestor(this.RestClient);
             ChampionSelect = new LeagueChampionSelectRequestor(this.RestClient);
+            Perks = new LeaguePerksRequestor(this.RestClient);
         }
     }
 }

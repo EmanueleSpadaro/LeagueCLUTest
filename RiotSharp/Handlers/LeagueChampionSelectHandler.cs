@@ -40,7 +40,6 @@ namespace LeagueCLUTest.RiotSharp.Handlers
 
         private async Task RequestorTaskCycle()
         {
-            Console.WriteLine("CSHandler started");
             while(true)
             {
                 if(ChampionSelected != null)
