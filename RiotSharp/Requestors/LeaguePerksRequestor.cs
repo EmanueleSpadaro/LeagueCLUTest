@@ -23,7 +23,7 @@ namespace LeagueCLUTest.RiotSharp.Requestors
 
             private static RestRequest DeleteAllPagesRequest = new RestRequest("/lol-perks/v1/pages", Method.DELETE);
             private static RestRequest GetCurrentPageRequest = new RestRequest("/lol-perks/v1/currentpage", Method.GET);
-            private static RestRequest PutCurrentPageRequest = new RestRequest("/lol-perks/v1/currentpage", Method.GET);
+            private static RestRequest PutCurrentPageRequest = new RestRequest("/lol-perks/v1/currentpage", Method.PUT);
             private static RestRequest GetAllPagesRequest = new RestRequest("/lol-perks/v1/pages", Method.GET);
             private static RestRequest PostPageRequest = new RestRequest("/lol-perks/v1/pages", Method.POST);
             private static RestRequest DeletePageRequest = new RestRequest("/lol-perks/v1/pages/", Method.DELETE);
@@ -56,11 +56,37 @@ namespace LeagueCLUTest.RiotSharp.Requestors
                 return JsonSerializer.Deserialize<LeaguePerkPage>(res.Content, LeagueRequestor.JsonSerializerOptions);
             }
 
-            public async Task<LeaguePerkPage> ReplaceCurrentPageWith(LeaguePostablePerkPage page)
+            public async Task SetPageAsCurrent(LeaguePerkPage page)
             {
-                var currentPage = await GetCurrentPage();
-                await DeletePage(currentPage);
-                return await PostNewPage(page);
+                PutCurrentPageRequest.AddOrUpdateParameter("id", page.ID);
+                var res = await RestClient.ExecuteAsync(PutCurrentPageRequest);
+            }
+
+            public async Task<LeaguePerkPage> SetNewPageAsCurrent(LeaguePostablePerkPage page)
+            {
+                var pages = await GetAllPages();
+                var deletablePages = pages.Where(p => p.IsDeletable).ToArray();
+
+                LeaguePerkPage newPage;
+                if(deletablePages.Length > 0)
+                {
+                    var firstDeletablePage = deletablePages.First();
+                    await DeletePage(firstDeletablePage);
+                    newPage =  await PostNewPage(page);
+                }
+                else
+                {
+                    newPage = await PostNewPage(page);
+                }
+
+                await SetPageAsCurrent(newPage);
+                return newPage;
+            }
+
+            public async Task<LeaguePerkPage[]> GetAllPages()
+            {
+                var res = await RestClient.ExecuteAsync(GetAllPagesRequest);
+                return JsonSerializer.Deserialize<LeaguePerkPage[]>(res.Content, LeagueRequestor.JsonSerializerOptions);
             }
         }
     }

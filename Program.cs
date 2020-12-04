@@ -9,22 +9,36 @@ using LeagueCLUTest.RiotSharp.Enums;
 
 using LeagueCLUTest.RiotSharp.Models;
 
+using RestSharp;
+
 namespace LeagueCLUTest
 {
     class Program
     {
         static LeagueSharp League = new LeagueSharp();
+        static RestClient RunesEndpoint = new RestClient("https://emanuelespadaro.com");
 
         static void Main(string[] args)
-        { 
-            var postablePerk = LeaguePostablePerkPage.FromJSON("{\"primaryStyleId\":8200,\"selectedPerkIds\":[8230,8226,8210,8237,8304,8345,5005,5008,5002],\"subStyleId\":8300,\"name\":\"[Anna.gg] Orianna\"}");
+        {
+            League.ChampionSelectHandler.ChampionSelected += ChampionSelectHandler_ChampionSelected;
+            Console.WriteLine("Press enter to close the process");
+            Console.ReadLine();
+        }
 
-            Console.ReadKey();
-            League.Requestor.Perks.ReplaceCurrentPageWith(postablePerk).Wait();
-            Console.WriteLine("Press enter to check if it's blocking");
-            Console.ReadKey();
-            Console.WriteLine("It shouldn't be if you're here after Cycle started");
-            Console.ReadKey();
+        private static void ChampionSelectHandler_ChampionSelected(object sender, RiotSharp.Handlers.LeagueChampionSelectHandlerEventArgs e)
+        {
+            var runesJson = GetRunesByEndpoint(e.ChampionID).Result;
+            var rPage = League.Requestor.Perks.SetNewPageAsCurrent(runesJson).Result;
+            Console.WriteLine("New runepage set to " + rPage.Name + "! Enjoy ;) ");
+        }
+
+        static async Task<LeaguePostablePerkPage> GetRunesByEndpoint(int ckid)
+        {
+            RestRequest RunesRequest = new RestRequest("/annaggrunes", Method.GET, DataFormat.Json);
+            RunesRequest.AddParameter("ckid", ckid, ParameterType.GetOrPost);
+            var res = await RunesEndpoint.ExecuteAsync(RunesRequest);
+
+            return LeaguePostablePerkPage.FromJSON(res.Content);
         }
     }
 }
