@@ -10,9 +10,6 @@ using System.Net.Http;
 using System.IO;
 
 using RestSharp;
-
-using DotNetstat;
-
 using LeagueCLUTest.RiotSharp.Requestors;
 using LeagueCLUTest.RiotSharp.Models;
 using LeagueCLUTest.RiotSharp.Exceptions;
@@ -31,7 +28,6 @@ namespace LeagueCLUTest.RiotSharp
         public LeagueRequestor Requestor { get; private set; }
 
         private Process LeagueProcess { get; set; }
-        private RestClient RestClient;
 
         //Game event handlers, they're gonna be moved to LeagueSharp.Handlers prop asap for code cleanup
         public LeagueMatchmakingHandler MatchmakingHandler { get; private set; }
