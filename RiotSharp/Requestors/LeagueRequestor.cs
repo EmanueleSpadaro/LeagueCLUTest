@@ -31,6 +31,7 @@ namespace LeagueCLUTest.RiotSharp.Requestors
         public LeagueChampionSelectRequestor ChampionSelect { get; private set; }
         public LeaguePerksRequestor Perks { get; private set; }
         public LeagueSummonerRequestor Summoner { get; private set; }
+        public LeagueRegaliaRequestor Regalia { get; private set; }
         #endregion
 
         public LeagueRequestor(Process LeagueProcess)
@@ -58,6 +59,7 @@ namespace LeagueCLUTest.RiotSharp.Requestors
             ChampionSelect = new LeagueChampionSelectRequestor(this.RestClient);
             Perks = new LeaguePerksRequestor(this.RestClient);
             Summoner = new LeagueSummonerRequestor(this.RestClient);
+            Regalia = new LeagueRegaliaRequestor(this.RestClient);
         }
     }
 }

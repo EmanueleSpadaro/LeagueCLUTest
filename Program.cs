@@ -20,19 +20,14 @@ namespace LeagueCLUTest
     {
         static LeagueSharp League;
         static RestClient RunesEndpoint = new RestClient("https://emanuelespadaro.com");
-
-        #region InvisibilityStuff
-        [DllImport("user32.dll")]
-        static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
-
-        [DllImport("Kernel32")]
-        private static extern IntPtr GetConsoleWindow();
-
-        const int SW_HIDE = 0;
-        const int SW_SHOW = 5;
-        #endregion
         static void Main(string[] args)
         {
+            League = new LeagueSharp();
+            var sByName = League.Requestor.Summoner.GetSummoner("Markown").Result;
+            Console.WriteLine(sByName.InternalName);
+            var markuhRegalia = League.Requestor.Regalia.GetSummonerRegalia(sByName).Result;
+            Console.ReadKey();
+            /*
             Console.WriteLine("====================== Anna.gg (not for much time, sadly) ======================");
             Console.WriteLine("Waiting for LeagueClient...");
             while (Process.GetProcessesByName("LeagueClient").Length == 0)
@@ -57,6 +52,7 @@ namespace LeagueCLUTest
             {
                 return;
             }
+            //Correctly connected to LCU from now on
             League.ChampionSelectHandler.ChampionSelected += ChampionSelectHandler_ChampionSelected;
 
             Console.WriteLine("====================== Anna.gg (not for much time, sadly) ======================");
@@ -67,6 +63,7 @@ namespace LeagueCLUTest
             Console.ReadLine();
             Console.ReadLine();
             Console.ReadLine();
+            */
         }
 
         private static void ChampionSelectHandler_ChampionSelected(object sender, RiotSharp.Handlers.LeagueChampionSelectHandlerEventArgs e)
