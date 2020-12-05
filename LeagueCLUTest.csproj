@@ -112,12 +112,15 @@
     <Compile Include="RiotSharp\Exceptions\LeagueUndeletablePageDeleteAttemptException.cs" />
     <Compile Include="RiotSharp\Handlers\LeagueChampionSelectHandler.cs" />
     <Compile Include="RiotSharp\Handlers\LeagueMatchmakingHandler.cs" />
+    <Compile Include="RiotSharp\Models\LeagueAccountIdentifications.cs" />
     <Compile Include="RiotSharp\Models\LeaguePostablePerkPage.cs" />
     <Compile Include="RiotSharp\Models\LeagueChampion.cs" />
     <Compile Include="RiotSharp\Models\LeagueChampionSelectTimer.cs" />
     <Compile Include="RiotSharp\Models\LeaguePatchStatus.cs" />
     <Compile Include="RiotSharp\Models\LeaguePerkPage.cs" />
     <Compile Include="RiotSharp\Models\LeagueReadyCheck.cs" />
+    <Compile Include="RiotSharp\Models\LeagueRerollPoints.cs" />
+    <Compile Include="RiotSharp\Models\LeagueSummoner.cs" />
     <Compile Include="RiotSharp\Requestors\LeagueChampionSelectRequestor.cs" />
     <Compile Include="RiotSharp\Requestors\LeagueMatchmakingRequestor.cs" />
     <Compile Include="RiotSharp\Requestors\LeaguePatchRequestor.cs" />
@@ -127,6 +130,7 @@
     <Compile Include="RiotSharp\Models\LeagueLockData.cs" />
     <Compile Include="RiotSharp\Models\LeagueMatchmaking.cs" />
     <Compile Include="RiotSharp\Models\LeaguePatchGameVersion.cs" />
+    <Compile Include="RiotSharp\Requestors\LeagueSummonerRequestor.cs" />
     <Compile Include="RiotSharp\Requestors\RiotClientRequestor.cs" />
   </ItemGroup>
   <ItemGroup>
