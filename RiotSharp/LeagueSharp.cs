@@ -32,6 +32,7 @@ namespace LeagueCLUTest.RiotSharp
         //Game event handlers, they're gonna be moved to LeagueSharp.Handlers prop asap for code cleanup
         public LeagueMatchmakingHandler MatchmakingHandler { get; private set; }
         public LeagueChampionSelectHandler ChampionSelectHandler { get; private set; }
+        public LeagueChampionSelectSessionHandler ChampSelectSessionHandler { get; private set; }
 
         public LeagueSharp()
         {
@@ -48,6 +49,7 @@ namespace LeagueCLUTest.RiotSharp
 
             MatchmakingHandler = new LeagueMatchmakingHandler(this);
             ChampionSelectHandler = new LeagueChampionSelectHandler(this);
+            ChampSelectSessionHandler = new LeagueChampionSelectSessionHandler(this);
         }
     }
 }

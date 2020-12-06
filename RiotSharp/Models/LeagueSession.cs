@@ -37,7 +37,15 @@ namespace LeagueCLUTest.RiotSharp.Models
 
         //RiotSharp additions
 
-        public LeagueSessionAction[] ActionsReliable { get => this.Actions[0]; }
-        public int PlayersCount { get => MyTeam.Length + TheirTeam.Length; }
+        public LeagueSessionAction[] ActionsReliable { get => this.Actions?[0]; }
+        public int PlayersCount { get
+            {
+                if (MyTeam != null && TheirTeam != null)
+                    return MyTeam.Length + TheirTeam.Length;
+                else if (MyTeam != null && TheirTeam == null)
+                    return MyTeam.Length;
+                else
+                    return -1;
+            } }
     }
 }

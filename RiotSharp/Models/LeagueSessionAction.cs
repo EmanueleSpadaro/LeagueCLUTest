@@ -16,5 +16,13 @@ namespace LeagueCLUTest.RiotSharp.Models
         public bool IsInProgress { get; set; }
         public int PickTurn { get; set; }
         public string Type { get; set; }
+
+        public bool Equals(LeagueSessionAction action)
+        {
+            return (this.ActorCellId == action.ActorCellId && this.ChampionId == action.ChampionId
+                && this.Completed == action.Completed && this.Id == action.Id
+                && this.IsAllyAction == action.IsAllyAction && this.IsInProgress == action.IsInProgress
+                && this.PickTurn == action.PickTurn && this.Type == action.Type);
+        }
     }
 }

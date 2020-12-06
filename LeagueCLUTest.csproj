@@ -114,6 +114,7 @@
     <Compile Include="RiotSharp\Exceptions\LeagueClientSocketNotFoundException.cs" />
     <Compile Include="RiotSharp\Exceptions\LeagueUndeletablePageDeleteAttemptException.cs" />
     <Compile Include="RiotSharp\Handlers\LeagueChampionSelectHandler.cs" />
+    <Compile Include="RiotSharp\Handlers\LeagueChampionSelectSessionHandler.cs" />
     <Compile Include="RiotSharp\Handlers\LeagueMatchmakingHandler.cs" />
     <Compile Include="RiotSharp\Models\LeagueAccountIdentifications.cs" />
     <Compile Include="RiotSharp\Models\LeaguePostablePerkPage.cs" />

@@ -23,10 +23,9 @@ namespace LeagueCLUTest
         static void Main(string[] args)
         {
             League = new LeagueSharp();
-            Console.WriteLine("Press any key to get session");
-            Console.ReadKey();
-            var session = League.Requestor.ChampionSelect.GetCurrentSession().Result;
-            var actions = session.ActionsReliable;
+
+            League.ChampSelectSessionHandler.SessionUpdated += ChampSelectSessionHandler_SessionUpdated;
+
             Console.ReadKey();
             /*
             Console.WriteLine("====================== Anna.gg (not for much time, sadly) ======================");
@@ -65,6 +64,12 @@ namespace LeagueCLUTest
             Console.ReadLine();
             Console.ReadLine();
             */
+        }
+
+        private static void ChampSelectSessionHandler_SessionUpdated(object sender, RiotSharp.Handlers.LeagueChampionSelectSessionHandlerEventArgs e)
+        {
+            Console.Write($"[#{e.ActionNow.ActorCellId}|");
+            Console.Write($"{e.ActionNow.Type}] InProg: {e.ActionBefore.IsInProgress}->{e.ActionNow.IsInProgress}| IsComp: {e.ActionBefore.Completed}->{e.ActionNow.Completed}\n");
         }
 
         private static void ChampionSelectHandler_ChampionSelected(object sender, RiotSharp.Handlers.LeagueChampionSelectHandlerEventArgs e)
