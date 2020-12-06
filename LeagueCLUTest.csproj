@@ -125,6 +125,12 @@
     <Compile Include="RiotSharp\Models\LeagueReadyCheck.cs" />
     <Compile Include="RiotSharp\Models\LeagueRegalia.cs" />
     <Compile Include="RiotSharp\Models\LeagueRerollPoints.cs" />
+    <Compile Include="RiotSharp\Models\LeagueSession.cs" />
+    <Compile Include="RiotSharp\Models\LeagueSessionAction.cs" />
+    <Compile Include="RiotSharp\Models\LeagueSessionBanCollection.cs" />
+    <Compile Include="RiotSharp\Models\LeagueSessionChatDetails.cs" />
+    <Compile Include="RiotSharp\Models\LeagueSessionFeatureState.cs" />
+    <Compile Include="RiotSharp\Models\LeagueSessionSummoner.cs" />
     <Compile Include="RiotSharp\Models\LeagueSummoner.cs" />
     <Compile Include="RiotSharp\Requestors\LeagueChampionSelectRequestor.cs" />
     <Compile Include="RiotSharp\Requestors\LeagueMatchmakingRequestor.cs" />

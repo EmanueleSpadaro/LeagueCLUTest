@@ -23,9 +23,10 @@ namespace LeagueCLUTest
         static void Main(string[] args)
         {
             League = new LeagueSharp();
-            var sByName = League.Requestor.Summoner.GetSummoner("Markown").Result;
-            Console.WriteLine(sByName.InternalName);
-            var markuhRegalia = League.Requestor.Regalia.GetSummonerRegalia(sByName).Result;
+            Console.WriteLine("Press any key to get session");
+            Console.ReadKey();
+            var session = League.Requestor.ChampionSelect.GetCurrentSession().Result;
+            var actions = session.ActionsReliable;
             Console.ReadKey();
             /*
             Console.WriteLine("====================== Anna.gg (not for much time, sadly) ======================");

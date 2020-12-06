@@ -9,5 +9,9 @@ namespace LeagueCLUTest.RiotSharp.Enums
     public enum LeagueChampionSelectPhase
     {
         BAN_PICK,
+        /// <summary>
+        /// Game set, the last timer is running off (when nobody can do anything anymore)
+        /// </summary>
+        FINALIZING
     }
 }
