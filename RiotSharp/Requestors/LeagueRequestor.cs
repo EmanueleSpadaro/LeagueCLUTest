@@ -32,6 +32,7 @@ namespace LeagueCLUTest.RiotSharp.Requestors
         public LeaguePerksRequestor Perks { get; private set; }
         public LeagueSummonerRequestor Summoner { get; private set; }
         public LeagueRegaliaRequestor Regalia { get; private set; }
+        public LeagueLiveClientRequestor LiveClient { get; private set; }
         #endregion
 
         public LeagueRequestor(Process LeagueProcess)
@@ -60,6 +61,7 @@ namespace LeagueCLUTest.RiotSharp.Requestors
             Perks = new LeaguePerksRequestor(this.RestClient);
             Summoner = new LeagueSummonerRequestor(this.RestClient);
             Regalia = new LeagueRegaliaRequestor(this.RestClient);
+            LiveClient = new LeagueLiveClientRequestor(); //It doesn't need any parameter since it's the only Endpoint that uses a different RestClient
         }
     }
 }

@@ -23,47 +23,8 @@ namespace LeagueCLUTest
         static void Main(string[] args)
         {
             League = new LeagueSharp();
-
-            League.ChampSelectSessionHandler.SessionUpdated += ChampSelectSessionHandler_SessionUpdated;
-
+            var ev = League.Requestor.LiveClient.GetPlayers().Result;
             Console.ReadKey();
-            /*
-            Console.WriteLine("====================== Anna.gg (not for much time, sadly) ======================");
-            Console.WriteLine("Waiting for LeagueClient...");
-            while (Process.GetProcessesByName("LeagueClient").Length == 0)
-                Thread.Sleep(1000);
-            Thread.Sleep(1000);
-            Console.WriteLine("Loading... 0%");
-            Thread.Sleep(1000);
-            Console.WriteLine("Loading... 25%");
-            Thread.Sleep(1000);
-            Console.WriteLine("Loading... 50%");
-            Thread.Sleep(1000);
-            Console.WriteLine("Loading... 75%");
-            Thread.Sleep(1000);
-            Console.WriteLine("Loading... 100%");
-            Thread.Sleep(500);
-            Console.Clear();
-            try
-            {
-                League = new LeagueSharp();
-            }
-            catch
-            {
-                return;
-            }
-            //Correctly connected to LCU from now on
-            League.ChampionSelectHandler.ChampionSelected += ChampionSelectHandler_ChampionSelected;
-
-            Console.WriteLine("====================== Anna.gg (not for much time, sadly) ======================");
-            Console.WriteLine("Welcome! Relax and chill while I'll take care of everything regarding your runes :)");
-            Console.WriteLine("How to use me? You don't use me, bastard. I'm just trying to help you here.");
-            Console.WriteLine("You just have to play League however you've always done and when you'll pick a champ\nI'll bake a fresh new rune page for it");
-            Console.WriteLine("Take your seat and hang tight, leave ");
-            Console.ReadLine();
-            Console.ReadLine();
-            Console.ReadLine();
-            */
         }
 
         private static void ChampSelectSessionHandler_SessionUpdated(object sender, RiotSharp.Handlers.LeagueChampionSelectSessionHandlerEventArgs e)

@@ -34,19 +34,5 @@ namespace LeagueCLUTest.RiotSharp.Models
         public LeagueSessionSummoner[] TheirTeam { get; set; }
         public LeagueChampionSelectTimer Timer { get; set; }
         //public List<int> Trades { get; set; } [Momentarily disabled]
-
-        //RiotSharp additions
-        /*
-        public LeagueSessionAction[] ActionsReliable { get => this.Actions?[0]; }
-        public int PlayersCount { get
-            {
-                if (MyTeam != null && TheirTeam != null)
-                    return MyTeam.Length + TheirTeam.Length;
-                else if (MyTeam != null && TheirTeam == null)
-                    return MyTeam.Length;
-                else
-                    return -1;
-            } }
-        */
     }
 }
