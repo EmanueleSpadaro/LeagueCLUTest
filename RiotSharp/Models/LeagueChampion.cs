@@ -15,7 +15,7 @@ namespace LeagueCLUTest.RiotSharp.Models
         /// <summary>
         /// This is the string unique id of the champion E.G. [(Nunu & Willump)Champ name != Champ ID (Nunu)]
         /// </summary>
-        public string ID { get; set; }
+        public string Id { get; set; }
 
         /// <summary>
         /// Numeric champion identifier

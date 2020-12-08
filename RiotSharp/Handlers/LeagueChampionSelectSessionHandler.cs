@@ -21,7 +21,6 @@ namespace LeagueCLUTest.RiotSharp.Handlers
         }
     }
 
-
     public class LeagueChampionSelectSessionHandler
     {
         private LeagueSharp FatherLeagueSharp;
@@ -51,23 +50,29 @@ namespace LeagueCLUTest.RiotSharp.Handlers
                 if(SessionUpdated != null)
                 {
                     var session = await FatherLeagueSharp.Requestor.ChampionSelect.GetCurrentSession();
-                    if(previousSession != null && session.Actions != null)
+                    //We only want to manage consistent session objects
+                    if (session.Actions != null)
                     {
-                        for(int i = 0; i < session.Actions.Length; i++)
+                        if (previousSession != null && previousSession.GameId == session.GameId)
                         {
-                            var sameTypeActions = session.Actions[i];
-                            var prevTypeActions = previousSession.Actions[i];
-                            for(int j = 0; j < sameTypeActions.Length; j++)
+                            for (int i = 0; i < session.Actions.Length; i++)
                             {
-                                var currentAction = sameTypeActions[j];
-                                var previousAction = prevTypeActions[j];
-                                //If previous action differs from the other one, we throw the event
-                                if (!previousAction.Equals(currentAction))
-                                    SessionUpdated(this, new LeagueChampionSelectSessionHandlerEventArgs(session, previousAction, currentAction));
+                                var sameTypeActions = session.Actions[i];
+                                var prevTypeActions = previousSession.Actions[i];
+                                for (int j = 0; j < sameTypeActions.Length; j++)
+                                {
+                                    var currentAction = sameTypeActions[j];
+                                    var previousAction = prevTypeActions[j];
+                                    //If previous action differs from the other one, we throw the event
+                                    if (!previousAction.Equals(currentAction))
+                                        SessionUpdated(this, new LeagueChampionSelectSessionHandlerEventArgs(session, previousAction, currentAction));
+                                }
                             }
                         }
+                        previousSession = session;
                     }
-                    previousSession = session;
+                    else if (session.Actions == null && previousSession != null)
+                        previousSession = null;
                 }
                 await Task.Delay(PollingRate);
             }

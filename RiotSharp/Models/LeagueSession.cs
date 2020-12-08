@@ -33,10 +33,10 @@ namespace LeagueCLUTest.RiotSharp.Models
         public bool SkipChampionSelect { get; set; }
         public LeagueSessionSummoner[] TheirTeam { get; set; }
         public LeagueChampionSelectTimer Timer { get; set; }
-        public List<int> Trades { get; set; }
+        //public List<int> Trades { get; set; } [Momentarily disabled]
 
         //RiotSharp additions
-
+        /*
         public LeagueSessionAction[] ActionsReliable { get => this.Actions?[0]; }
         public int PlayersCount { get
             {
@@ -47,5 +47,6 @@ namespace LeagueCLUTest.RiotSharp.Models
                 else
                     return -1;
             } }
+        */
     }
 }

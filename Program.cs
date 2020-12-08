@@ -68,8 +68,17 @@ namespace LeagueCLUTest
 
         private static void ChampSelectSessionHandler_SessionUpdated(object sender, RiotSharp.Handlers.LeagueChampionSelectSessionHandlerEventArgs e)
         {
-            Console.Write($"[#{e.ActionNow.ActorCellId}|");
-            Console.Write($"{e.ActionNow.Type}] InProg: {e.ActionBefore.IsInProgress}->{e.ActionNow.IsInProgress}| IsComp: {e.ActionBefore.Completed}->{e.ActionNow.Completed}\n");
+            string stringabella = $"[#{e.ActionNow.ActorCellId}|{e.ActionNow.Type}] InProg: {e.ActionBefore.IsInProgress}->{e.ActionNow.IsInProgress}| IsComp: {e.ActionBefore.Completed}->{e.ActionNow.Completed}";
+            if (e.ActionNow.Type == "pick")
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+            else if (e.ActionNow.Type == "ban")
+                Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(stringabella);
+            Console.ResetColor();
+
+            Console.WriteLine("PlayersCount: " + e.Session.MyTeam.Length + e.Session.TheirTeam.Length);
+            Console.WriteLine("GameID: " + e.Session.GameId);
+
         }
 
         private static void ChampionSelectHandler_ChampionSelected(object sender, RiotSharp.Handlers.LeagueChampionSelectHandlerEventArgs e)
