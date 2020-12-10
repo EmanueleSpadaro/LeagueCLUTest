@@ -30,12 +30,13 @@ namespace LeagueCLUTest.RiotSharp.Models
             var regResult = Regex.Matches(patchStr, @"(\d+)");           
             Season = Convert.ToInt32(regResult[0].Value);
             Major = Convert.ToInt32(regResult[1].Value);
-            Minor = Convert.ToInt32(regResult[2].Value);
+            //Minor = Convert.ToInt32(regResult[2].Value);
+            Minor = 1; //Apparently, it's always 1 by checking DDragon JSONs
         }
 
         public bool Equals(LeaguePatchGameVersion v)
             => this.Season == v.Season && this.Major == v.Major;
 
-        public override string ToString() => $"{Season}.{Major}";
+        public override string ToString() => $"{Season}.{Major}.{Minor}";
     }
 }

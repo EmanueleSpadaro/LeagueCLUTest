@@ -23,10 +23,10 @@ namespace LeagueCLUTest
         static void Main(string[] args)
         {
             League = new LeagueSharp();
-            var ev = League.Requestor.LiveClient.GetPlayers().Result;
+            League.ChampSelectSessionHandler.SessionUpdated += ChampSelectSessionHandler_SessionUpdated;
+            Console.WriteLine(League.Requestor.LeaguePatch.GetGameVersionAsync().Result);
             Console.ReadKey();
         }
-
         private static void ChampSelectSessionHandler_SessionUpdated(object sender, RiotSharp.Handlers.LeagueChampionSelectSessionHandlerEventArgs e)
         {
             string stringabella = $"[#{e.ActionNow.ActorCellId}|{e.ActionNow.Type}] InProg: {e.ActionBefore.IsInProgress}->{e.ActionNow.IsInProgress}| IsComp: {e.ActionBefore.Completed}->{e.ActionNow.Completed}";
@@ -34,11 +34,23 @@ namespace LeagueCLUTest
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
             else if (e.ActionNow.Type == "ban")
                 Console.ForegroundColor = ConsoleColor.Red;
+
+            
             Console.WriteLine(stringabella);
             Console.ResetColor();
+            Console.WriteLine("Phase:" + e.Session.Timer.Phase);
+            Console.WriteLine("GameID:" + e.Session.GameId);
+
+            /*
+            var totalPlayers = (e.Session.MyTeam?.Length + e.Session.TheirTeam?.Length);
+            if(e.Session.Actions.Any(actions => actions.Length == totalPlayers && actions.FirstOrDefault().Type == "pick" && actions.All(a => a.Completed)))
+            {
+                Console.WriteLine($"Game {e.Session.GameId} might be started");
+            }
 
             Console.WriteLine("PlayersCount: " + e.Session.MyTeam.Length + e.Session.TheirTeam.Length);
             Console.WriteLine("GameID: " + e.Session.GameId);
+            */
 
         }
 
