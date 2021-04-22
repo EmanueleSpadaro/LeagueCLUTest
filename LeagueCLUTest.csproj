@@ -117,7 +117,12 @@
     <Compile Include="RiotSharp\Exceptions\LeagueUndeletablePageDeleteAttemptException.cs" />
     <Compile Include="RiotSharp\Handlers\LeagueChampionSelectHandler.cs" />
     <Compile Include="RiotSharp\Handlers\LeagueChampionSelectSessionHandler.cs" />
+    <Compile Include="RiotSharp\Handlers\LeagueLiveClientHandler.cs" />
     <Compile Include="RiotSharp\Handlers\LeagueMatchmakingHandler.cs" />
+    <Compile Include="RiotSharp\Models\DDragon\DDragonChampion.cs" />
+    <Compile Include="RiotSharp\Models\DDragon\DDragonChampionInfo.cs" />
+    <Compile Include="RiotSharp\Models\DDragon\DDragonChampionStats.cs" />
+    <Compile Include="RiotSharp\Models\DDragon\DDragonImage.cs" />
     <Compile Include="RiotSharp\Models\LeagueAccountIdentifications.cs" />
     <Compile Include="RiotSharp\Models\LeaguePostablePerkPage.cs" />
     <Compile Include="RiotSharp\Models\LeagueChampion.cs" />
@@ -157,6 +162,7 @@
     <Compile Include="RiotSharp\Models\LiveClient\LiveClientStealableKillEvent.cs" />
     <Compile Include="RiotSharp\Models\LiveClient\LiveClientSummonerSpellSet.cs" />
     <Compile Include="RiotSharp\Models\LiveClient\LiveClientTurretKillEvent.cs" />
+    <Compile Include="RiotSharp\Requestors\DDragonRequestor.cs" />
     <Compile Include="RiotSharp\Requestors\LeagueChampionSelectRequestor.cs" />
     <Compile Include="RiotSharp\Requestors\LeagueLiveClientRequestor.cs" />
     <Compile Include="RiotSharp\Requestors\LeagueMatchmakingRequestor.cs" />
@@ -175,7 +181,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="RiotSharp\Enums\DDragon\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

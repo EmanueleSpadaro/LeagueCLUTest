@@ -52,7 +52,8 @@ namespace LeagueCLUTest.RiotSharp.Requestors
                 var res = await LiveClientRestClient.ExecuteAsync(GetEventsRequest);
                 var jDoc = JsonDocument.Parse(res.Content);
                 var eventsArr = jDoc.RootElement.GetProperty("Events").ToString();
-                return JsonSerializer.Deserialize<LiveClientSerializableEvent[]>(eventsArr, LeagueRequestor.JsonSerializerOptions);
+
+                return JsonSerializer.Deserialize<LiveClientSerializableEvent[]>(eventsArr, LeagueRequestor.JsonSerializerOptions);  
             }
 
             public async Task<LiveClientPlayerAbilitySet> GetActivePlayerAbilities()

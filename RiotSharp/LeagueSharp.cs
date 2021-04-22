@@ -11,7 +11,7 @@ using System.IO;
 
 using RestSharp;
 using LeagueCLUTest.RiotSharp.Requestors;
-using LeagueCLUTest.RiotSharp.Models;
+using LeagueCLUTest.RiotSharp.Models.DDragon;
 using LeagueCLUTest.RiotSharp.Exceptions;
 using LeagueCLUTest.RiotSharp.Handlers;
 using RestSharp.Authenticators;
@@ -32,7 +32,12 @@ namespace LeagueCLUTest.RiotSharp
         //Game event handlers, they're gonna be moved to LeagueSharp.Handlers prop asap for code cleanup
         public LeagueMatchmakingHandler MatchmakingHandler { get; private set; }
         public LeagueChampionSelectHandler ChampionSelectHandler { get; private set; }
+        /// <summary>
+        /// Handler that manages everything regarding the ENTIRE Champion Select Process, other players included
+        /// </summary>
         public LeagueChampionSelectSessionHandler ChampSelectSessionHandler { get; private set; }
+
+        public LeagueLiveClientHandler LeagueLiveClientHandler { get; private set; }
 
         public LeagueSharp()
         {
@@ -50,6 +55,8 @@ namespace LeagueCLUTest.RiotSharp
             MatchmakingHandler = new LeagueMatchmakingHandler(this);
             ChampionSelectHandler = new LeagueChampionSelectHandler(this);
             ChampSelectSessionHandler = new LeagueChampionSelectSessionHandler(this);
+            LeagueLiveClientHandler = new LeagueLiveClientHandler(this);
+
         }
     }
 }

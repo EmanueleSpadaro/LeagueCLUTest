@@ -23,8 +23,10 @@ namespace LeagueCLUTest
         static void Main(string[] args)
         {
             League = new LeagueSharp();
-            League.ChampSelectSessionHandler.SessionUpdated += ChampSelectSessionHandler_SessionUpdated;
-            Console.WriteLine(League.Requestor.LeaguePatch.GetGameVersionAsync().Result);
+            Console.WriteLine($"League Client patch detected: " + League.Requestor.LeaguePatch.GetGameVersionAsync().Result.ToString());
+            Console.WriteLine($"League Client current username detected: " + League.Requestor.Summoner.GetCurrentSummoner().Result.DisplayName);
+
+            //League.ChampSelectSessionHandler.SessionUpdated += ChampSelectSessionHandler_SessionUpdated; [implementare più eventi, champion pick e così via]
             Console.ReadKey();
         }
         private static void ChampSelectSessionHandler_SessionUpdated(object sender, RiotSharp.Handlers.LeagueChampionSelectSessionHandlerEventArgs e)
@@ -34,24 +36,12 @@ namespace LeagueCLUTest
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
             else if (e.ActionNow.Type == "ban")
                 Console.ForegroundColor = ConsoleColor.Red;
-
-            
             Console.WriteLine(stringabella);
-            Console.ResetColor();
+
+
+
             Console.WriteLine("Phase:" + e.Session.Timer.Phase);
             Console.WriteLine("GameID:" + e.Session.GameId);
-
-            /*
-            var totalPlayers = (e.Session.MyTeam?.Length + e.Session.TheirTeam?.Length);
-            if(e.Session.Actions.Any(actions => actions.Length == totalPlayers && actions.FirstOrDefault().Type == "pick" && actions.All(a => a.Completed)))
-            {
-                Console.WriteLine($"Game {e.Session.GameId} might be started");
-            }
-
-            Console.WriteLine("PlayersCount: " + e.Session.MyTeam.Length + e.Session.TheirTeam.Length);
-            Console.WriteLine("GameID: " + e.Session.GameId);
-            */
-
         }
 
         private static void ChampionSelectHandler_ChampionSelected(object sender, RiotSharp.Handlers.LeagueChampionSelectHandlerEventArgs e)

@@ -19,7 +19,7 @@ namespace LeagueCLUTest.RiotSharp.Models.LiveClient
         public string TurretKilled { get; set; }
         public string InhibKilled { get; set; }
         public string DragonType { get; set; }
-        public bool Stolen { get; set; }
+        public string Stolen { get; set; }
         public string VictimName { get; set; }
         public int KillStreak { get; set; }
         public string Acer { get; set; }
